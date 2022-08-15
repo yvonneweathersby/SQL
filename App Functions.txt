@@ -1,0 +1,23 @@
+CREATE table SmartRent (id INTEGER PRIMARY KEY, status "text", door "TEXT");
+
+INSERT INTO SmartRent VALUES (1, "locked", "front");
+INSERT INTO SmartRent VALUES (2, "unlocked", "front");
+INSERT INTO SmartRent VALUES (3, "locked", "back");
+INSERT INTO SmartRent VALUES (4, "unlocked", "back");
+INSERT INTO SmartRent VALUES (5, "locked", "front");
+INSERT INTO SmartRent Values (6, "locked", "back");
+
+ALTER TABLE SmartRent ADD type "text";
+SELECT * from SmartRent;
+
+UPDATE SmartRent SET type = "manual"
+WHERE door = "back";
+
+UPDATE SmartRent SET type = "electronic"
+WHERE door = "front";
+
+SELECT * FROM SmartRent;
+
+DROP TABLE SmartRent;
+
+SELECT * FROM SmartRent;
