@@ -1,0 +1,54 @@
+CREATE TABLE authors (id INTEGER PRIMARY KEY, first_name "TEXT", last_name "TEXT", genre "TEXT");
+
+INSERT INTO authors VALUES (1, "Josie", "Silver", "romance");
+INSERT INTO authors VALUES (2, "Brene", "Brown", "self_help");
+INSERT INTO authors VALUES (3, "JK", "Rowling", "children");
+INSERT INTO authors VALUES (4, "Steven", "King", "horror");
+INSERT INTO authors VALUES (5, "John", "Grisham", "mystery");
+
+select * from authors;
+
+CREATE TABLE book_list (id INTEGER PRIMARY KEY, authors_id INTEGER, name "TEXT", genre "TEXT");
+
+INSERT INTO book_list VALUES (1, 1, "One Day in December", "romance");
+INSERT INTO book_list VALUES (2, 1, "One Night on the Island", "romance");
+INSERT INTO book_list VALUES (3, 2, "Daring Greatly", "self_help");
+INSERT INTO book_list VALUES (4, 2, "Into the Wilderness", "self_help");
+INSERT INTO book_list VALUES (5, 3, "Harry Potter", "children");
+INSERT INTO book_list VALUES (6, 3, "Secret Beasts", "children");
+INSERT INTO book_list VALUES (7, 4, "It", "horror");
+INSERT INTO book_list VALUES (8, 5, "The Client", "mystery");
+INSERT INTO book_list VALUES (9, 5, "Camino Winds", "mystery");
+
+CREATE TABLE co_authors (id INTEGER PRIMARY KEY, authors1_id INTEGER, authors2_id INTEGER);
+
+INSERT INTO co_authors VALUES (1, 1, 3);
+INSERT INTO co_authors VALUES (2, 5, 4);
+INSERT INTO co_authors VALUES (3, 3, 4);
+
+SELECT * from co_authors;
+
+Select * from book_list;
+
+Select name from book_list
+WHERE genre = "romance"; 
+
+Select name from book_list
+Where genre = "children" OR genre = "mystery";
+
+SELECT first_name, last_name from authors
+Order By last_name;
+
+SELECT COUNT (name), genre from book_list
+GROUP BY genre;
+
+SELECT (first_name || ' ' || last_name) as author_name, name FROM authors 
+JOIN book_list 
+ON authors.id = book_list.authors_id;
+
+SELECT a.first_name, a.last_name, b.first_name, b.last_name FROM co_authors 
+JOIN authors a
+ON co_authors.authors1_id = a.id
+JOIN authors b
+ON co_authors.authors2_id = b.id;
+
